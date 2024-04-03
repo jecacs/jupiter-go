@@ -21,13 +21,8 @@ type client struct {
 func newClient(
 	wallet Wallet,
 	rpcEndpoint string,
-	maxRetries uint,
 	opts ...ClientOption,
 ) (*client, error) {
-	if maxRetries == 0 {
-		maxRetries = defaultMaxRetries
-	}
-
 	c := &client{
 		maxRetries: defaultMaxRetries,
 		wallet:     wallet,
@@ -56,10 +51,9 @@ func newClient(
 func NewClient(
 	wallet Wallet,
 	rpcEndpoint string,
-	maxRetries uint,
 	opts ...ClientOption,
 ) (Client, error) {
-	return newClient(wallet, rpcEndpoint, maxRetries, opts...)
+	return newClient(wallet, rpcEndpoint, opts...)
 }
 
 // SendTransactionOnChain sends a transaction on-chain.

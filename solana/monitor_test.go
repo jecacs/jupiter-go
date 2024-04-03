@@ -7,7 +7,7 @@ import (
 
 	"github.com/test-go/testify/require"
 
-	"github.com/ilkamo/jupiter-go/solana"
+	"github.com/jecacs/jupiter-go/solana"
 )
 
 type subscriberMock struct {
