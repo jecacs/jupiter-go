@@ -8,7 +8,7 @@ import (
 	"github.com/gagliardetto/solana-go/rpc"
 )
 
-const defaultMaxRetries = uint(20)
+const defaultMaxRetries = uint(30)
 
 type TxID string
 
@@ -21,8 +21,13 @@ type client struct {
 func newClient(
 	wallet Wallet,
 	rpcEndpoint string,
+	maxRetries uint,
 	opts ...ClientOption,
 ) (*client, error) {
+	if maxRetries == 0 {
+		maxRetries = defaultMaxRetries
+	}
+
 	c := &client{
 		maxRetries: defaultMaxRetries,
 		wallet:     wallet,
@@ -51,9 +56,10 @@ func newClient(
 func NewClient(
 	wallet Wallet,
 	rpcEndpoint string,
+	maxRetries uint,
 	opts ...ClientOption,
 ) (Client, error) {
-	return newClient(wallet, rpcEndpoint, opts...)
+	return newClient(wallet, rpcEndpoint, maxRetries, opts...)
 }
 
 // SendTransactionOnChain sends a transaction on-chain.
@@ -78,7 +84,7 @@ func (e client) SendTransactionOnChain(ctx context.Context, txBase64 string) (Tx
 	sig, err := e.clientRPC.SendTransactionWithOpts(ctx, &tx, rpc.TransactionOpts{
 		MaxRetries:          &e.maxRetries,
 		MinContextSlot:      &latestBlockhash.Context.Slot,
-		PreflightCommitment: rpc.CommitmentProcessed,
+		PreflightCommitment: rpc.CommitmentFinalized,
 	})
 	if err != nil {
 		return "", fmt.Errorf("could not send transaction: %w", err)
