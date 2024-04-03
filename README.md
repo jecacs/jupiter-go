@@ -14,7 +14,7 @@ It also provides:
 ## Installation
 
 ```bash
-go get github.com/ilkamo/jupiter-go
+go get github.com/jecacs/jupiter-go
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ package main
 import (
 	"context"
 
-	"github.com/ilkamo/jupiter-go/jupiter"
+	"github.com/jecacs/jupiter-go/jupiter"
 )
 
 func main() {
@@ -81,8 +81,8 @@ package main
 import (
 	"time"
 
-	"github.com/ilkamo/jupiter-go/jupiter"
-	"github.com/ilkamo/jupiter-go/solana"
+	"github.com/jecacs/jupiter-go/jupiter"
+	"github.com/jecacs/jupiter-go/solana"
 )
 
 func main() {
@@ -99,7 +99,7 @@ func main() {
 	// handle the error
 
 	// Sign and send the transaction.
-	signedTx, err := solanaClient.SendTransactionOnChain(ctx, swap.SwapTransaction)
+	signedTx, err := solanaClient.SendTransactionOnChain(ctx, swap.SwapTransaction, 30)
 	// handle the error
 
 	// Wait a bit to let the transaction propagate to the network.
