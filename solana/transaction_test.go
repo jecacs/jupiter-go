@@ -6,7 +6,7 @@ import (
 	"github.com/gagliardetto/solana-go"
 	"github.com/test-go/testify/require"
 
-	jupSolana "github.com/ilkamo/jupiter-go/solana"
+	jupSolana "github.com/jecacs/jupiter-go/solana"
 )
 
 const testTx = "AAEAAQPrM+1WcczVrvBstwqcH1lXpPpbHuKVFpSj9kZOi1GITD6KBh4ENmDzZ4cG9x+7s1w6q77AoogJbaz28WWsI0elAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgS9CVZkT3oU8ECpERHXI92vwg8ofvcIVgdQtcOK3NgECAgABDAIAAACghgEAAAAAAA=="
